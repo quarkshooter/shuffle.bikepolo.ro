@@ -1,0 +1,53 @@
+/*@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono);*/
+@font-face {
+font-family: "BTC";
+src: url('../dist/fontcache/BTC.ttf') format('truetype');
+}
+html,
+body {
+  margin: 0;
+}
+
+/*.page-container {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}*/
+
+.btc {
+font-family: "BTC";
+line-height: initial;
+}
+
+.header {
+  margin: 10px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.title {
+  /*font-family: 'Ubuntu+Mono', monospace;*/
+  color: #2386ff;
+}
+
+/*area {
+  border: 1px solid black;
+  color: blue;
+}*/
+
+.footer {
+  border: 10px solid black;
+  /*margin: 0;
+  outline-color: light-blue;
+  outline-style: dotted;*/
+}
+
+.copyright {
+  text-align: left;
+}
+
+.tip {
+  margin-right: 10px;
+  float: right;
+}

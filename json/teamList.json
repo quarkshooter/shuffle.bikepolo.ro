@@ -1,0 +1,54 @@
+[
+  {
+    "teamName": "PoloBuddies",
+    "teamMembers": [
+      { "playerName": "Aa",
+        "offense": "",
+        "defense": ""
+      },{
+        "playerName": "Bb",
+        "property1": "",
+        "property2": ""
+      },{
+        "playerName": "Cc",
+        "property1": "",
+        "property2": ""
+      }
+    ],
+    "color":"#D13C43"
+  },{
+    "teamName": "Ball Scratchers",
+    "teamMembers": [
+      { "playerName": "Dd",
+        "property1": "",
+        "property2": ""
+      },{
+        "playerName": "Ee",
+        "property1": "",
+        "property2": ""
+      },{
+        "playerName": "Ff",
+        "property1": "",
+        "property2": ""
+      }
+    ],
+    "color":"#526BF9"
+  },{
+    "teamName": "PawLaw",
+    "teamMembers": [
+      { "playerName": "Gg",
+        "property1": "",
+        "property2": ""
+      },{
+        "playerName": "Hh",
+        "property1": "",
+        "property2": ""
+      },{
+        "playerName": "Ii",
+        "property1": "",
+        "property2": ""
+      }
+    ],
+    "color":"#177C0A"
+  }
+]

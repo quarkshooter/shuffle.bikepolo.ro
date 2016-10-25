@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>shuffle.bikepolo.ro</title>
+    <link rel="stylesheet" href="./css/index.css">
+  </head>
+<body>
+  <div id="qrcode" style="margin: 24px;"></div>
+
+  <script src="./js/qr/qrcode.js"></script>
+  <script>
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+      text: "bitcoin:1BW29s5LkGB43QDtFr4xmjxo7mmhVtLo42?amount=0.02",
+      width: 350,
+      height: 300,
+      colorDark : "#000000",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.L
+    });
+  </script>
+</body>
+</html>
+<!-- r(ɹ) -->
