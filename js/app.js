@@ -7,7 +7,6 @@ let teamList = [];
 // let team = [];
 // let teamsDisplay = "";
 
-// INCONSEQUENTIAL CHANGE TO SEE GITHUB UPDATE THE PROJECT PROPERLY
 let eventList = [];
 // TEAM CONSTRUCTOR
 
