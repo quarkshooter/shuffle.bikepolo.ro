@@ -7,8 +7,9 @@ let teamList = [];
 // let team = [];
 // let teamsDisplay = "";
 
-// TEAM CONSTRUCTOR
+// INCONSEQUENTIAL CHANGE TO SEE GITHUB UPDATE THE PROJECT PROPERLY
 let eventList = [];
+// TEAM CONSTRUCTOR
 
 // the demo ID is a testing variable
 let demo = document.getElementById("demo");
