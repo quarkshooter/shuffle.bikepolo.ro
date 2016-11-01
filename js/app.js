@@ -8,14 +8,44 @@ let teamList = [];
 // let teamsDisplay = "";
 
 let eventList = [];
-// TEAM CONSTRUCTOR
 
-// the demo ID is a testing variable
+//  hook for document prototyping
 let demo = document.getElementById("demo");
-let linebreak = document.createElement("br");
 
-
+////
 // Functions Block
+////
+
+// world functions //
+
+function getRandomColor() {
+  let letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function getTimestamp() {
+  return new Date().toISOString();
+}
+
+// init Functions //
+
+function createTeam(name, members) {
+  this.teamName = name;
+  this.teamMembers = members;
+  this.color = getRandomColor();
+}
+
+function createNewPlayer(name) {
+  this.id = getPlayerNumber();
+  this.playerName = name;
+  this.offense = 0;
+  this.defense = 0;
+  this.gamesPlayed = 0;
+}
 
 function createEvent(owner) {
   this.userID = owner;
@@ -28,11 +58,9 @@ function createEvent(owner) {
   this.registeredPlayers = "";
 }
 
-function getTimestamp() {
-  return new Date().toISOString();
-}
+// ajax I/O functions //
 
-function getEvents() {
+function fetchEvents() {
   $.ajax({
     cache: false,
     dataType: "json",
@@ -46,43 +74,27 @@ function getEvents() {
     console.log(eventList);
     // let x = eventList[0].eventName;
     // document.getElementById("demo").appendChild(document.createTextNode(x));
-    showAllEvents();
+    listAllEvents();
   });
 }
 
-function showAllEvents() {
-  if (!eventList[0]) {
-    alert("no_events_in_eventList");
-  } else {
-    // $.each(reply, function(reply.key, reply.val){
-    //   eventList.push("<li id='" + key + "'>" + val + "</li>");
-    // });
-    var $ul = $("<ul>")
-      .addClass("mylist")
-      .append(eventList.map(eventName => $("<li>").append($("<a>").text(eventName))));
-  }
-    // $("#eCo").document.createElement("ul", {
-    //
-    //   'click': function(){ alert(this.id); },
-    //   'mouseenter': function(){ $(this).css('color', 'red'); },
-    //   'mouseleave': function(){ $(this).css('color', 'white'); }
-    // });
-    // for (let each = 0; each < eventList.length; each++) {
-    //   $("#eventList").document.createElement("li", {
-    //     "id": ("event" + each),
-    //     "class": "listItem",
-    //     "content": ""
-    //   });
-    //   let eventText = document.createTextNode(eventList[each].eventName + " | " +
-    //       eventList[each].timestamp + " | " + eventList[each].url);
-    //   let eventLine = document.createElement("li");
-    //   console.log(eventLine);
-    //   demo.appendChild(eventLine);
-    // }
+function fetchPlayers() {
+  $.ajax({
+    cache: false,
+    dataType: "json",
+    url: "./json/playerList.json",
+    success: function(reply) {
+      for (let each = 0; each < reply.length; each++) {
+        playerList.push(reply[each]);
+      }
+    }
+  }).done(function(){
+    addToTeam(newPlayers);
+    showAllPlayers();
+  });
 }
 
-
-function getTeams() {
+function fetchTeams() {
   $.ajax({
     cache: false,
     dataType: "json",
@@ -97,6 +109,14 @@ function getTeams() {
     showAllPlayers();
   });
 }
+
+// data query functions //
+
+function getPlayerNumber(i) {
+  return playerList[i].number;
+}
+
+// modifier functions //
 
 function addToTeam(playerBase) {
   let teamMembers = [];
@@ -120,53 +140,86 @@ function addToTeam(playerBase) {
   }
 }
 
-function createTeam(name, members) {
-  this.teamName = name;
-  this.teamMembers = members;
-  this.color = getRandomColor();
-}
+// display functions //
 
-function createNewPlayer(name) {
-  this.playerName = name;
-  this.offense = 0;
-  this.defense = 0;
-  this.gamesPlayed = 0;
-}
-
-function getRandomColor() {
-  let letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
-function showAllPlayers() {
-  if (!teamList[0]) {
-    alert("no_teams_in_teamList");
+function listAllPlayers() {
+  if (!playerList[0]) {
+    alert("no_players_in_playerList");
   } else {
-    console.log(teamList);
-    // demo.appendChild(document.createTextNode(teamList[0].teamName));
-    // demo.appendChild(document.createTextNode(teamList[2].teamName));
-    for (let each = 0; each < teamList.length; each++) {
-      let teamName = document.createTextNode(teamList[each].teamName);
-      demo.appendChild(teamName);
-      // for (let every = 0; every < 3; every++) {
-      //   let playerName = document.createTextNode(teamList[each].teamPlayer[every].playerName);
-      //   demo.appendChild(playerName);
-      //   demo.appendChild(linebreak);
-      // }
-      // demo.appendChild(linebreak);
+    console.log(playerList);
+
+    let ulElement = document.createElement("ul");
+    demo.appendChild(ulElement).className = "ulPlayerList";
+
+    for (let each = 0; each < playerList.length; each++) {
+      let liElement = document.createElement("li");
+      liElement.innerHTML = liElement.innerHTML + playerList[each].playerName;
+      ulElement.appendChild(liElement).className = "liPlayerName";
     }
   }
 }
 
+function listAllEvents() {
+  if (!eventList[0]) {
+    alert("no_events_in_eventList");
+  } else {
+    // $.each(reply, function(reply.key, reply.val){
+    //   eventList.push("<li id='" + key + "'>" + val + "</li>");
+    // });
+    var $ul = $("<ul>")
+      .addClass("mylist")
+      .append(eventList.map((eventName) => $("<li>").append($("<a>").text(eventName))));
+  }
+    // $("#eventsContainer").document.createElement("ul", {
+    //
+    //   'click': function(){ alert(this.id); },
+    //   'mouseenter': function(){ $(this).css('color', 'red'); },
+    //   'mouseleave': function(){ $(this).css('color', 'white'); }
+    // });
+    // for (let each = 0; each < eventList.length; each++) {
+    //   $("#eventList").document.createElement("li", {
+    //     "id": ("event" + each),
+    //     "class": "listItem",
+    //     "content": ""
+    //   });
+    //   let eventText = document.createTextNode(eventList[each].eventName + " | " +
+    //       eventList[each].timestamp + " | " + eventList[each].url);
+    //   let eventLine = document.createElement("li");
+    //   console.log(eventLine);
+    //   demo.appendChild(eventLine);
+    // }
+}
 
+function showAllTeams() {
+  if (!teamList[0]) {
+    alert("no_teams_in_teamList");
+  } else {
+    console.log(teamList);
+
+    let ulElement = document.createElement("ul");
+    demo.appendChild(ulElement).className = "ulTeamList";
+
+    for (let each = 0; each < teamList.length; each++) {
+      let liElement = document.createElement("li");
+      liElement.innerHTML = liElement.innerHTML + teamList[each].teamName;
+      ulElement.appendChild(liElement).className = "liTeamName";
+    }
+  }
+}
+
+////
 // Execution Block
+////
 
-// mainPage.html
-getEvents();
+// mainPage
+// document.body.onload = addElement;
+fetchEvents();
+displayEvents();
 
-// teams status page
-getTeams();
+// event status page
+fetchPlayers();
+showPlayerStats();
+
+// team event status page
+// fetchTeams();
+// showAllTeams();
