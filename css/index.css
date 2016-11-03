@@ -10,33 +10,42 @@ html, body {
 .page-container {
 }
 
-.header {
+header {
   margin: 10px;
   border: 1px solid black;
   text-align: center;
 }
 
 .title {
-  /*font-family: 'Ubuntu+Mono', monospace;*/
+  font-family: 'Ubuntu+Mono', monospace;
+  margin: 0;
   color: #2386ff;
 }
 
-.eventsContainer {
+.container {
   margin: 5% 10% 5% 10%;
   text-align: center;
   border: 10px solid pink;
-
 }
 
-.eventItem {
+.ulist {
+  padding: 0;
+}
+
+.litem {
   display: block;
 }
 
-.liTeamName {
-  display: block;
+.litem a {
+  color: #818181;
+  transition: 0.1s; /* Transition effects on hover (color) */
 }
 
-.footer {
+.litem a:hover, .litem a:focus {
+    color: #f10000;
+}
+
+footer {
   border: 10px solid blue;
   padding: 0 10px 0 10px;
 }

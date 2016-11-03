@@ -1,16 +1,10 @@
-// Declarations Block
-
+////
+// init declarations
+////
 const maxTeamPlayers = 3;
-let newPlayers = ["a","e","i","o","u","0"];
-let teamList = [];
+let newPlayerStore = ["a","e","i","o","u","0"];
+let teamList = [], eventList = [], playerList = [];
 
-// let team = [];
-// let teamsDisplay = "";
-
-let eventList = [];
-
-//  hook for document prototyping
-let demo = document.getElementById("demo");
 
 ////
 // Functions Block
@@ -31,7 +25,7 @@ function getTimestamp() {
   return new Date().toISOString();
 }
 
-// init Functions //
+// object init functions //
 
 function createTeam(name, members) {
   this.teamName = name;
@@ -40,27 +34,27 @@ function createTeam(name, members) {
 }
 
 function createNewPlayer(name) {
-  this.id = getPlayerNumber();
+  this.id = playerList.length + 1;
   this.playerName = name;
   this.offense = 0;
   this.defense = 0;
   this.gamesPlayed = 0;
 }
 
-function createEvent(owner) {
-  this.userID = owner;
-  // this.timestamp = "getTimestamp() YYYY-MM-DD HH:mm";
+function createEvent(ownerHash) {
+  this.userID = ownerHash;
   this.eventName = "";
+  // this.timestamp = "getTimestamp() YYYY-MM-DD HH:mm";
   this.eventDate = getTimestamp();
   this.placeFlair = "";
   this.placeDetail = "";
   this.url = "";
-  this.registeredPlayers = "";
+  this.registeredPlayers = 0;
 }
 
 // ajax I/O functions //
 
-function fetchEvents() {
+var fetchEvents = function() {
   $.ajax({
     cache: false,
     dataType: "json",
@@ -71,12 +65,12 @@ function fetchEvents() {
       }
     }
   }).done(function() {
-    console.log(eventList);
+    console.log("1");
+    displayEvents();
     // let x = eventList[0].eventName;
     // document.getElementById("demo").appendChild(document.createTextNode(x));
-    listAllEvents();
   });
-}
+};
 
 function fetchPlayers() {
   $.ajax({
@@ -89,8 +83,10 @@ function fetchPlayers() {
       }
     }
   }).done(function(){
-    addToTeam(newPlayers);
-    showAllPlayers();
+    console.log("2");
+    addToTeam(newPlayerStore);
+    displayPlayers();
+    fetchTeams();
   });
 }
 
@@ -105,29 +101,34 @@ function fetchTeams() {
       }
     }
   }).done(function(){
-    addToTeam(newPlayers);
-    showAllPlayers();
+    console.log("3");
+    addToTeam(newPlayerStore);
+    displayTeams();
   });
 }
 
 // data query functions //
 
-function getPlayerNumber(i) {
-  return playerList[i].number;
+
+// datastore modifying functions //
+
+function addNewPlayers(newPlayers) {
+  // let leftToProcess = newPlayers;
+  for (let each = 0; each < newPlayers.length; each++) {
+    playerList.push(new createNewPlayer(newPlayers[each]));
+  }
 }
 
-// modifier functions //
-
-function addToTeam(playerBase) {
+function addToTeam(newPlayers) {
   let teamMembers = [];
   let teamSizeCounter = 0;
-  // SANITYCHECK: check whether (playerBase.length) is a multiple of 3
+  // SANITYCHECK: check whether (newPlayers.length) is a multiple of 3
   // if not, do not proceed and ask for more inputs
-  // console.log("playerBase.length is "+playerBase.length);
-  // IF (playerBase.length % 3 != 0), highlight last 1/2 player inputs and alert "NEED 1/2 MORE"
-  while (playerBase.length > 0) {
-    let rngesus = Math.floor(Math.random() * playerBase.length);
-    teamMembers.push(new createNewPlayer(playerBase[rngesus])); // pune jucatorul in echipa
+  // console.log("newPlayers.length is " + newPlayers.length);
+  // IF (newPlayers.length % 3 != 0), highlight last 1/2 player inputs and alert "NEED 1/2 MORE"
+  while (newPlayers.length > 0) {
+    let rngesus = Math.floor(Math.random() * newPlayers.length);
+    teamMembers.push(new createNewPlayer(newPlayers[rngesus])); // pune jucatorul in echipa
     teamSizeCounter += 1;
     if (teamSizeCounter == maxTeamPlayers) {
       let counter = teamList.length + 1;
@@ -136,40 +137,25 @@ function addToTeam(playerBase) {
       teamMembers = [];
       teamSizeCounter = 0;        // curata locul pentru urmatoarea echipa
     }
-    playerBase.splice(rngesus, 1); // sterge jucatorul din baza de selectie
+    newPlayers.splice(rngesus, 1); // sterge jucatorul din baza de selectie
   }
 }
 
 // display functions //
 
-function listAllPlayers() {
-  if (!playerList[0]) {
-    alert("no_players_in_playerList");
-  } else {
-    console.log(playerList);
-
-    let ulElement = document.createElement("ul");
-    demo.appendChild(ulElement).className = "ulPlayerList";
-
-    for (let each = 0; each < playerList.length; each++) {
-      let liElement = document.createElement("li");
-      liElement.innerHTML = liElement.innerHTML + playerList[each].playerName;
-      ulElement.appendChild(liElement).className = "liPlayerName";
-    }
-  }
-}
-
-function listAllEvents() {
+var displayEvents = function() {
   if (!eventList[0]) {
-    alert("no_events_in_eventList");
+    return alert("no_events_in_eventList");
   } else {
     // $.each(reply, function(reply.key, reply.val){
     //   eventList.push("<li id='" + key + "'>" + val + "</li>");
     // });
-    var $ul = $("<ul>")
+    return ul = $("<ul>")
       .addClass("mylist")
-      .append(eventList.map((eventName) => $("<li>").append($("<a>").text(eventName))));
+      .append(eventList.map((eventName) =>
+        $("<li>").append($("<a>").text(eventName))));
   }
+};
     // $("#eventsContainer").document.createElement("ul", {
     //
     //   'click': function(){ alert(this.id); },
@@ -188,21 +174,34 @@ function listAllEvents() {
     //   console.log(eventLine);
     //   demo.appendChild(eventLine);
     // }
+
+function displayPlayers() {
+  if (!playerList[0]) {
+    alert("no_players_in_playerList");
+  } else {
+    console.log(playerList);
+    let ul = document.getElementById("playerList");
+
+    for (let each = 0; each < playerList.length; each++) {
+      let liElement = document.createElement("li");
+      liElement.innerHTML = playerList[each].playerName;
+      liElement.href =
+      ul.appendChild(liElement).className = "player litem";
+    }
+  }
 }
 
-function showAllTeams() {
+function displayTeams() {
   if (!teamList[0]) {
     alert("no_teams_in_teamList");
   } else {
     console.log(teamList);
-
-    let ulElement = document.createElement("ul");
-    demo.appendChild(ulElement).className = "ulTeamList";
+    let ul = document.getElementById("teamList");
 
     for (let each = 0; each < teamList.length; each++) {
       let liElement = document.createElement("li");
-      liElement.innerHTML = liElement.innerHTML + teamList[each].teamName;
-      ulElement.appendChild(liElement).className = "liTeamName";
+      liElement.innerHTML = teamList[each].teamName;
+      ul.appendChild(liElement).className = "team litem";
     }
   }
 }
@@ -214,12 +213,12 @@ function showAllTeams() {
 // mainPage
 // document.body.onload = addElement;
 fetchEvents();
-displayEvents();
+// displayEvents();
+
 
 // event status page
 fetchPlayers();
-showPlayerStats();
+// .then(showPlayerStats);
 
 // team event status page
-// fetchTeams();
-// showAllTeams();
+// displayTeams();
