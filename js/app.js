@@ -5,7 +5,6 @@ const maxTeamPlayers = 3;
 let newPlayerStore = ["a","e","i","o","u","0"];
 let teamList = [], eventList = [], playerList = [];
 
-
 ////
 // Functions Block
 ////
@@ -84,7 +83,7 @@ function fetchPlayers() {
     }
   }).done(function(){
     console.log("2");
-    addToTeam(newPlayerStore);
+    addNewPlayers(newPlayerStore);
     displayPlayers();
     fetchTeams();
   });
@@ -150,10 +149,9 @@ var displayEvents = function() {
     // $.each(reply, function(reply.key, reply.val){
     //   eventList.push("<li id='" + key + "'>" + val + "</li>");
     // });
-    return ul = $("<ul>")
-      .addClass("mylist")
-      .append(eventList.map((eventName) =>
-        $("<li>").append($("<a>").text(eventName))));
+    document.getElementById("eventList")
+      .append(eventList.map((eventName) => $("<li>")
+      .append($("<a>").text(eventName))));
   }
 };
     // $("#eventsContainer").document.createElement("ul", {
@@ -175,7 +173,7 @@ var displayEvents = function() {
     //   demo.appendChild(eventLine);
     // }
 
-function displayPlayers() {
+var displayPlayers = function() {
   if (!playerList[0]) {
     alert("no_players_in_playerList");
   } else {
@@ -185,13 +183,13 @@ function displayPlayers() {
     for (let each = 0; each < playerList.length; each++) {
       let liElement = document.createElement("li");
       liElement.innerHTML = playerList[each].playerName;
-      liElement.href =
       ul.appendChild(liElement).className = "player litem";
+      this.href = "http://blah"
     }
   }
 }
 
-function displayTeams() {
+var displayTeams = function() {
   if (!teamList[0]) {
     alert("no_teams_in_teamList");
   } else {
