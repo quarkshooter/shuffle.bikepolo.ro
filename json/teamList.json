@@ -1,6 +1,6 @@
 [
   {
-    "teamName": "PoloBuddies",
+    "teamID": "PoloBuddies",
     "teamMembers": [
       { "playerName": "Aa",
         "offense": "",
@@ -17,7 +17,7 @@
     ],
     "color":"#D13C43"
   },{
-    "teamName": "Ball Scratchers",
+    "teamID": "Ball Scratchers",
     "teamMembers": [
       { "playerName": "Dd",
         "property1": "",
@@ -34,7 +34,7 @@
     ],
     "color":"#526BF9"
   },{
-    "teamName": "PawLaw",
+    "teamID": "PawLaw",
     "teamMembers": [
       { "playerName": "Gg",
         "property1": "",

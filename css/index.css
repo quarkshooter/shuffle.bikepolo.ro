@@ -24,29 +24,71 @@ header {
 
 .container {
   margin: 5% 10% 5% 10%;
+  padding: 1% 1% 1% 1%;
   text-align: center;
-  border: 10px solid pink;
+  border: 10px solid gray;
 }
 
 .ulist {
   padding: 0;
 }
 
+#eventList {
+  cursor: pointer;
+  display: block;
+  height: 80%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .litem {
   display: block;
+  text-align: center;
 }
 
 .litem a {
-  color: #818181;
+  display: block;
+  width: 100%;
+  color: #414131;
+  text-decoration: none;
   transition: 0.1s; /* Transition effects on hover (color) */
 }
 
-.litem a:hover, .litem a:focus {
-    color: #f10000;
+.litem :hover, .litem :focus {
+  color: #f10000;
+  background-color: #AAAAAA;
+}
+
+.litem .dateData {
+  margin-left: 400px;
+  float: left;
+  width: 6em;
+}
+
+.litem .countryFlair {
+  float: left;
+  width: 2em;
+}
+
+.litem .name {
+  /*float: left;*/
+  width: 20em;
+}
+
+/*.litem .placeData {
+  width: 240px;
+}*/
+
+.litem .players {
+  margin-right: 450px;
+  width: 4em;
+  float: right;
+  text-align: right;
 }
 
 footer {
-  border: 10px solid blue;
+  border: 10px solid lightblue;
   padding: 0 10px 0 10px;
 }
 

@@ -1,46 +1,55 @@
 [
   {
-    "number": "1",
+    "playerID": "1",
+    "countryFlair": "",
     "playerName": "Aa",
     "offense": "",
     "defense": ""
   },{
-    "number": "2",
+    "playerID": "2",
+    "countryFlair": "",
     "playerName": "Bb",
     "property1": "",
     "property2": ""
   },{
-    "number": "3",
+    "playerID": "3",
+    "countryFlair": "",
     "playerName": "Cc",
     "property1": "",
     "property2": ""
   },{
-    "number": "4",
+    "playerID": "4",
+    "countryFlair": "",
     "playerName": "Dd",
     "property1": "",
     "property2": ""
   },{
-    "number": "5",
+    "playerID": "5",
+    "countryFlair": "",
     "playerName": "Ee",
     "property1": "",
     "property2": ""
   },{
-    "number": "6",
+    "playerID": "6",
+    "countryFlair": "",
     "playerName": "Ff",
     "property1": "",
     "property2": ""
   },{
-    "number": "7",
+    "playerID": "7",
+    "countryFlair": "",
     "playerName": "Gg",
     "property1": "",
     "property2": ""
   },{
-    "number": "8",
+    "playerID": "8",
+    "countryFlair": "",
     "playerName": "Hh",
     "property1": "",
     "property2": ""
   },{
-    "number": "9",
+    "playerID": "9",
+    "countryFlair": "",
     "playerName": "Ii",
     "property1": "",
     "property2": ""

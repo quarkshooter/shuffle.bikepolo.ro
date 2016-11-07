@@ -2,37 +2,45 @@
   {
     "userID": "#hash#",
     "eventName": "OktoBro 16",
-    "eventDate": "2016-10-02 00:05:22.222",
+    "timestamp": "YYYY-MM-DDTHH:mm:ss.sssZ",
+    "eventDate": "2016-10-02",
+    "startTime": "10:00",
     "placeFlair": "RO",
     "placeDetail": "Bucharest, Dobroesti Court",
     "url": "oktobro16",
-    "registeredPlayers": "0"
+    "registeredPlayers": "12"
   },
   {
     "userID": "#hash#",
     "eventName": "BBP Summer 2016",
-    "eventDate": "YYYY-MM-DDTHH:mm:ss.sssZ",
+    "timestamp": "YYYY-MM-DDTHH:mm:ss.sssZ",
+    "eventDate": "2016-06-07",
+    "startTime": "11:00",
     "placeFlair": "RO",
     "placeDetail": "Bucharest, Dobroesti Court",
     "url": "bbpsummer2016",
-    "registeredPlayers": "0"
+    "registeredPlayers": "110"
   },
   {
     "userID": "#hash#",
     "eventName": "Otaku Festival 2015",
-    "eventDate": "YYYY-MM-DD HH:mm",
+    "timestamp": "YYYY-MM-DDTHH:mm:ss.sssZ",
+    "eventDate": "2015-05-02",
+    "startTime": "00:00",
     "placeFlair": "RO",
     "placeDetail": "Bucharest, RAU",
     "url": "otakufestival2015",
-    "registeredPlayers": "0"
+    "registeredPlayers": "4000"
   },
   {
     "userID": "#hash#",
     "eventName": "Nijikon 2014",
-    "eventDate": "YYYY-MM-DD HH:mm",
+    "timestamp": "YYYY-MM-DDTHH:mm:ss.sssZ",
+    "eventDate": "2014-10-20",
+    "startTime": "10:00",
     "placeFlair": "RO",
     "placeDetail": "Bucharest, Bragadiru Palace",
     "url": "nijikon2014",
-    "registeredPlayers": "0"
+    "registeredPlayers": "7500"
   }
 ]

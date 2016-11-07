@@ -27,13 +27,13 @@ function getTimestamp() {
 // object init functions //
 
 function createTeam(name, members) {
-  this.teamName = name;
+  this.teamID = name; // FIXME: ID needs to become a unique eventID*timestamp hash
   this.teamMembers = members;
   this.color = getRandomColor();
 }
 
 function createNewPlayer(name) {
-  this.id = playerList.length + 1;
+  this.playerID = playerList.length + 1; // FIXME: ID needs to become a unique userID*timestamp hash
   this.playerName = name;
   this.offense = 0;
   this.defense = 0;
@@ -71,7 +71,7 @@ var fetchEvents = function() {
   });
 };
 
-function fetchPlayers() {
+var fetchPlayers = function() {
   $.ajax({
     cache: false,
     dataType: "json",
@@ -85,11 +85,10 @@ function fetchPlayers() {
     console.log("2");
     addNewPlayers(newPlayerStore);
     displayPlayers();
-    fetchTeams();
   });
-}
+};
 
-function fetchTeams() {
+var fetchTeams = function() {
   $.ajax({
     cache: false,
     dataType: "json",
@@ -104,7 +103,7 @@ function fetchTeams() {
     addToTeam(newPlayerStore);
     displayTeams();
   });
-}
+};
 
 // data query functions //
 
@@ -146,48 +145,58 @@ var displayEvents = function() {
   if (!eventList[0]) {
     return alert("no_events_in_eventList");
   } else {
-    // $.each(reply, function(reply.key, reply.val){
-    //   eventList.push("<li id='" + key + "'>" + val + "</li>");
-    // });
-    document.getElementById("eventList")
-      .append(eventList.map((eventName) => $("<li>")
-      .append($("<a>").text(eventName))));
+    // var msgContainer = document.createDocumentFragment();
+    $.each(eventList, function(key, val) {
+      console.log(key, val);
+      let ul = document.getElementById("eventList");
+      let aElement = document.createElement("a");
+      aElement.className = "eventLink";
+      aElement.href = "./" + val.url;
+      let liElement = document.createElement("li");
+      let dateElement = document.createElement("span");
+      dateElement.textContent = val.eventDate;
+      dateElement.className = "dateData";
+      let flairElement = document.createElement("span");
+      flairElement.textContent = val.placeFlair;
+      flairElement.className = "countryFlair";
+      let nameElement = document.createElement("span");
+      nameElement.textContent = val.eventName;
+      nameElement.className = "name";
+      // let placeElement = document.createElement("span");
+      // placeElement.textContent = val.placeDetail;
+      // placeElement.className = "placeData"
+      let playersElement = document.createElement("span");
+      playersElement.textContent = val.registeredPlayers;
+      playersElement.className = "players";
+      liElement.appendChild(dateElement);
+      liElement.appendChild(flairElement);
+      liElement.appendChild(nameElement);
+      // liElement.appendChild(placeElement);
+      liElement.appendChild(playersElement);
+      aElement.appendChild(liElement).className = "litem";
+
+      ul.appendChild(aElement).className = "litem event";
+    });
   }
 };
-    // $("#eventsContainer").document.createElement("ul", {
-    //
-    //   'click': function(){ alert(this.id); },
-    //   'mouseenter': function(){ $(this).css('color', 'red'); },
-    //   'mouseleave': function(){ $(this).css('color', 'white'); }
-    // });
-    // for (let each = 0; each < eventList.length; each++) {
-    //   $("#eventList").document.createElement("li", {
-    //     "id": ("event" + each),
-    //     "class": "listItem",
-    //     "content": ""
-    //   });
-    //   let eventText = document.createTextNode(eventList[each].eventName + " | " +
-    //       eventList[each].timestamp + " | " + eventList[each].url);
-    //   let eventLine = document.createElement("li");
-    //   console.log(eventLine);
-    //   demo.appendChild(eventLine);
-    // }
 
 var displayPlayers = function() {
   if (!playerList[0]) {
     alert("no_players_in_playerList");
   } else {
-    console.log(playerList);
     let ul = document.getElementById("playerList");
 
     for (let each = 0; each < playerList.length; each++) {
       let liElement = document.createElement("li");
-      liElement.innerHTML = playerList[each].playerName;
-      ul.appendChild(liElement).className = "player litem";
-      this.href = "http://blah"
+      let aElement = document.createElement("a");
+      aElement.textContent = playerList[each].playerName;
+      aElement.href = "./";
+      liElement.appendChild(aElement);
+
+      ul.appendChild(liElement).className = "litem player";
     }
   }
-}
+};
 
 var displayTeams = function() {
   if (!teamList[0]) {
@@ -198,11 +207,12 @@ var displayTeams = function() {
 
     for (let each = 0; each < teamList.length; each++) {
       let liElement = document.createElement("li");
-      liElement.innerHTML = teamList[each].teamName;
-      ul.appendChild(liElement).className = "team litem";
+      liElement.textContent = teamList[each].teamID;
+
+      ul.appendChild(liElement).className = "litem team";
     }
   }
-}
+};
 
 ////
 // Execution Block
@@ -219,4 +229,13 @@ fetchPlayers();
 // .then(showPlayerStats);
 
 // team event status page
+fetchTeams();
 // displayTeams();
+
+// $(document).ready(function($) {
+//   $(".event")
+//     .click(function() {window.document.location = $(this).data("href");})
+//     .mouseover(function() {$(this).addClass('hover');})
+//     .mouseout(function() {$(this).removeClass('hover');})
+//   ;
+// });
