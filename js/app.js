@@ -148,7 +148,7 @@ var displayEvents = function() {
     // var msgContainer = document.createDocumentFragment();
     $.each(eventList, function(key, val) {
       console.log(key, val);
-      let ul = document.getElementById("eventList");
+      let ul = document.getElementsByClassName("eventList");
       let aElement = document.createElement("a");
       aElement.className = "eventLink";
       aElement.href = "./" + val.url;
@@ -161,13 +161,13 @@ var displayEvents = function() {
       flairElement.className = "countryFlair";
       let nameElement = document.createElement("span");
       nameElement.textContent = val.eventName;
-      nameElement.className = "name";
+      nameElement.className = "eventName";
       // let placeElement = document.createElement("span");
       // placeElement.textContent = val.placeDetail;
       // placeElement.className = "placeData"
       let playersElement = document.createElement("span");
-      playersElement.textContent = val.registeredPlayers;
-      playersElement.className = "players";
+      playersElement.textContent = val.registeredPlayers + " players";
+      playersElement.className = "regPlayers";
       liElement.appendChild(dateElement);
       liElement.appendChild(flairElement);
       liElement.appendChild(nameElement);
@@ -175,7 +175,7 @@ var displayEvents = function() {
       liElement.appendChild(playersElement);
       aElement.appendChild(liElement).className = "litem";
 
-      ul.appendChild(aElement).className = "litem event";
+      ul[0].appendChild(aElement).className = "litem event";
     });
   }
 };
@@ -184,16 +184,17 @@ var displayPlayers = function() {
   if (!playerList[0]) {
     alert("no_players_in_playerList");
   } else {
-    let ul = document.getElementById("playerList");
+    let ul = document.getElementsByClassName("playerList");
 
     for (let each = 0; each < playerList.length; each++) {
       let liElement = document.createElement("li");
       let aElement = document.createElement("a");
-      aElement.textContent = playerList[each].playerName;
+      liElement.textContent = playerList[each].playerName;
+      liElement.className = "playerName";
       aElement.href = "./";
-      liElement.appendChild(aElement);
+      aElement.appendChild(liElement);
 
-      ul.appendChild(liElement).className = "litem player";
+      ul[0].appendChild(aElement).className = "litem player";
     }
   }
 };
@@ -203,13 +204,13 @@ var displayTeams = function() {
     alert("no_teams_in_teamList");
   } else {
     console.log(teamList);
-    let ul = document.getElementById("teamList");
+    let ul = document.getElementsByClassName("teamList");
 
     for (let each = 0; each < teamList.length; each++) {
       let liElement = document.createElement("li");
       liElement.textContent = teamList[each].teamID;
 
-      ul.appendChild(liElement).className = "litem team";
+      ul[0].appendChild(liElement).className = "litem team";
     }
   }
 };

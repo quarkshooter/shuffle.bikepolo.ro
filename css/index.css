@@ -24,21 +24,15 @@ header {
 
 .container {
   margin: 5% 10% 5% 10%;
-  padding: 1% 1% 1% 1%;
+  padding: 1em;
   text-align: center;
   border: 10px solid gray;
 }
 
-.ulist {
-  padding: 0;
-}
-
-#eventList {
-  cursor: pointer;
-  display: block;
-  height: 80%;
+.eventList, .playerList, .teamList {
+  /*cursor: pointer;*/
   width: 100%;
-  margin: 0;
+  margin: 16px 0 16px 0;
   padding: 0;
 }
 
@@ -48,7 +42,6 @@ header {
 }
 
 .litem a {
-  display: block;
   width: 100%;
   color: #414131;
   text-decoration: none;
@@ -61,7 +54,7 @@ header {
 }
 
 .litem .dateData {
-  margin-left: 400px;
+  margin-left: 20em;
   float: left;
   width: 6em;
 }
@@ -71,21 +64,25 @@ header {
   width: 2em;
 }
 
-.litem .name {
-  /*float: left;*/
-  width: 20em;
+.litem .eventName {
+  padding: 0 1.5em 0 0.5em;
+  width: 25em;
 }
 
-/*.litem .placeData {
-  width: 240px;
-}*/
-
-.litem .players {
-  margin-right: 450px;
-  width: 4em;
+.litem .regPlayers {
+  margin-right: 20em;
+  width: 7em;
   float: right;
   text-align: right;
 }
+
+.litem .playerName {
+  display: block;
+}
+
+/*.litem .placeData {
+width: 240px;
+}*/
 
 footer {
   border: 10px solid lightblue;

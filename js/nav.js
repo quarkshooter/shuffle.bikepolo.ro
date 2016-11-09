@@ -7,5 +7,5 @@ $(document).ready(function() {
       pageSelector: "#pagediv"
     }
   });
-  $("#lostmenu").mmenu();
+  $("#sidemenu").mmenu();
 });
