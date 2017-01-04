@@ -23,16 +23,16 @@ header {
 }
 
 .container {
-  margin: 5% 10% 5% 10%;
+  margin: 5em 10em 5em 10em;
   padding: 1em;
   text-align: center;
-  border: 10px solid gray;
+  border: 0.5em solid gray;
 }
 
 .eventList, .playerList, .teamList {
   /*cursor: pointer;*/
   width: 100%;
-  margin: 16px 0 16px 0;
+  margin: 1em 0 1em 0;
   padding: 0;
 }
 
@@ -54,7 +54,6 @@ header {
 }
 
 .litem .dateData {
-  margin-left: 20em;
   float: left;
   width: 6em;
 }
@@ -65,19 +64,22 @@ header {
 }
 
 .litem .eventName {
-  padding: 0 1.5em 0 0.5em;
+  padding: 0 0.5em 0 0.5em;
   width: 25em;
 }
 
 .litem .regPlayers {
-  margin-right: 20em;
   width: 7em;
   float: right;
   text-align: right;
 }
 
-.litem .playerName {
+.playerName {
   display: block;
+}
+
+.litem.event, .litem.player, .litem.team {
+  margin: auto;
 }
 
 /*.litem .placeData {
